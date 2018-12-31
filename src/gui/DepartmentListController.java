@@ -27,7 +27,7 @@ import model.entities.Department;
 import model.services.DepartmentService;
 
 public class DepartmentListController implements Initializable {
-
+	
 	private DepartmentService service;
 
 	@FXML
@@ -85,6 +85,7 @@ public class DepartmentListController implements Initializable {
 			DepartmentFormController controller = loader.getController();
 			controller.setDepartment(obj);
 			controller.updateFormData();
+			controller.setDepartmentService(new DepartmentService());
 
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Enter Department data");
