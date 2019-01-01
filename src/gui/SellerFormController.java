@@ -1,8 +1,9 @@
 package gui;
 
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -27,6 +28,8 @@ import model.services.SellerService;
 
 public class SellerFormController implements Initializable {
 
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	
 	private Seller entity;
 	private SellerService service;
 	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
@@ -115,8 +118,13 @@ public class SellerFormController implements Initializable {
 		obj.setName(txtName.getText());
 		obj.setEmail(txtEmail.getText());
 		obj.setBaseSalary(Double.valueOf(txtBaseSalary.getText()));
-		obj.setBirthDate(new Date());
-		obj.setDepartment(new Department(2,null));
+		try {
+			obj.setBirthDate(sdf.parse(txtBirthDate.getText()));
+			 sdf.setLenient(false);
+		}
+		catch (ParseException e) {
+		}
+		obj.setDepartment(new Department(Utils.tryParseToInt(txtDepartmentId.getText()),null));
 		if (exception.getErrors().size() > 0) {
 			throw exception;
 		}
@@ -149,7 +157,7 @@ public class SellerFormController implements Initializable {
 		txtId.setText(String.valueOf(entity.getId()));
 		txtName.setText(entity.getName());
 		txtEmail.setText(entity.getEmail());
-		txtBirthDate.setText(String.valueOf(entity.getBirthDate()));
+		txtBirthDate.setPromptText("yyyy-MM-dd");
 		txtBaseSalary.setText(String.valueOf(entity.getBaseSalary()));
 		txtDepartmentId.setText(String.valueOf(entity.getDepartment()));
 	}		

@@ -72,7 +72,6 @@ public class SellerListController implements Initializable, DataChangeListener {
 
 	@FXML
 	public void onBtNewAction(ActionEvent event) {
-		System.out.println("onBtNewAction");
 		Stage parentStage = Utils.currentStage(event);
 		Seller obj = new Seller();
 		createDialogForm(obj, "/gui/SellerForm.fxml", parentStage);
