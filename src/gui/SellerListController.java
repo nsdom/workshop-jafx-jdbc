@@ -72,7 +72,6 @@ public class SellerListController implements Initializable {
 		tableColumnDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
 		tableColumnBaseSalary.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
 		tableColumnDepartmentId.setCellValueFactory(new PropertyValueFactory<>("department"));
-
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewSeller.prefHeightProperty().bind(stage.heightProperty());
 	}
