@@ -111,6 +111,7 @@ public class SellerFormController implements Initializable {
 			exception.addError("name", "Field cant be empty");
 		}
 		obj.setName(txtName.getText());
+		obj.setEmail(txtEmail.getText());
 		if (exception.getErrors().size() > 0) {
 			throw exception;
 		}
