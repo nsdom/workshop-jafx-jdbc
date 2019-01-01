@@ -25,4 +25,9 @@ public class SellerService {
 		}
 	}
 
+
+	public void remove(Seller obj) {
+		dao.deleteById(obj.getId());
+	}
+
 }
