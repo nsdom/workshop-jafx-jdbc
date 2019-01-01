@@ -1,15 +1,12 @@
 package model.entities;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Seller implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
 	private Integer id;
 	private String name;
 	private String email;

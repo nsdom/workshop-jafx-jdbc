@@ -2,6 +2,7 @@ package gui;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -15,10 +16,11 @@ import gui.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+import model.entities.Department;
 import model.entities.Seller;
 import model.exceptions.ValidationException;
 import model.services.SellerService;
@@ -112,6 +114,9 @@ public class SellerFormController implements Initializable {
 		}
 		obj.setName(txtName.getText());
 		obj.setEmail(txtEmail.getText());
+		obj.setBaseSalary(Double.valueOf(txtBaseSalary.getText()));
+		obj.setBirthDate(new Date());
+		obj.setDepartment(new Department(2,null));
 		if (exception.getErrors().size() > 0) {
 			throw exception;
 		}
@@ -143,6 +148,10 @@ public class SellerFormController implements Initializable {
 		}
 		txtId.setText(String.valueOf(entity.getId()));
 		txtName.setText(entity.getName());
+		txtEmail.setText(entity.getEmail());
+		txtBirthDate.setText(String.valueOf(entity.getBirthDate()));
+		txtBaseSalary.setText(String.valueOf(entity.getBaseSalary()));
+		txtDepartmentId.setText(String.valueOf(entity.getDepartment()));
 	}		
 
 }
