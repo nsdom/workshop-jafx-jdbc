@@ -53,7 +53,7 @@ public class DepartmentListController implements Initializable, DataChangeListen
 
 	@FXML
 	private Button btNew;
-
+	
 	private ObservableList<Department> obsList;
 
 	@FXML
