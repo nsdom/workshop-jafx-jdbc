@@ -55,6 +55,7 @@
             </HBox>
             <Label text="Department Id" GridPane.rowIndex="5" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label GridPane.columnIndex="2" GridPane.rowIndex="5" />
          </children>
       </GridPane>
    </children>
