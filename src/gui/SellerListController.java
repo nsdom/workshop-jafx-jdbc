@@ -2,24 +2,24 @@ package gui;
 
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
-import gui.util.Utils;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.entities.Department;
 import model.entities.Seller;
-import model.services.DepartmentService;
 import model.services.SellerService;
 
-public class SellerListController {
+public class SellerListController implements Initializable {
 	
 	private SellerService service;
 	
@@ -69,11 +69,24 @@ public class SellerListController {
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
 		tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-		tableColumnDate.setCellValueFactory(new PropertyValueFactory<>("birth date"));
-		tableColumnBaseSalary.setCellValueFactory(new PropertyValueFactory<>("base salary"));
-		tableColumnDepartmentId.setCellValueFactory(new PropertyValueFactory<>("department id"));
+		tableColumnDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+		tableColumnBaseSalary.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
+		tableColumnDepartmentId.setCellValueFactory(new PropertyValueFactory<>("department"));
 
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewSeller.prefHeightProperty().bind(stage.heightProperty());
+	}
+	
+	public void updateTableView() {
+		if (service == null) {
+			throw new IllegalStateException("Service was null");
+		}
+		List<Seller> list = service.findAll();
+		obsList = FXCollections.observableArrayList(list);
+		tableViewSeller.setItems(obsList);
+	}
+
+	public void setSellerService(SellerService service) {
+		this.service = service;
 	}
 }
